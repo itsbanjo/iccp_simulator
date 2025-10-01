@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iccp-sites-config
+data:
+  sites.json: |
+    {
+      "auckland-penrose": {
+        "site_id": "AKL_PENROSE",
+        "display_name": "Auckland Penrose 330kV",
+        "lat": -36.8485,
+        "lon": 174.7633,
+        "customers": ["CONTACT_ENERGY", "MERCURY_ENERGY", "GENESIS_ENERGY"],
+        "message_frequency": 1.5
+      },
+      "wellington-central": {
+        "site_id": "WLG_CENTRAL",
+        "display_name": "Wellington Central 220kV",
+        "lat": -41.2865,
+        "lon": 174.7762,
+        "customers": ["MERCURY_ENERGY", "GENESIS_ENERGY"],
+        "message_frequency": 2.0
+      },
+      "christchurch-addington": {
+        "site_id": "CHC_ADDINGTON",
+        "display_name": "Christchurch Addington 66kV",
+        "lat": -43.5321,
+        "lon": 172.6362,
+        "customers": ["MERIDIAN_ENERGY", "CONTACT_ENERGY"],
+        "message_frequency": 1.8
+      },
+      "huntly-power": {
+        "site_id": "HUNTLY_POWER",
+        "display_name": "Huntly Power Station",
+        "lat": -37.5483,
+        "lon": 175.0681,
+        "customers": ["GENESIS_ENERGY"],
+        "message_frequency": 0.8
+      },
+      "manapouri-power": {
+        "site_id": "MANAPOURI_POWER",
+        "display_name": "Manapouri Power Station",
+        "lat": -45.5361,
+        "lon": 167.1761,
+        "customers": ["MERIDIAN_ENERGY"],
+        "message_frequency": 1.0
+      },
+      "taupo-geothermal": {
+        "site_id": "TAU_GEOTHERMAL",
+        "display_name": "Taupo Geothermal Station",
+        "lat": -38.7222,
+        "lon": 176.0702,
+        "customers": ["CONTACT_ENERGY"],
+        "message_frequency": 1.2
+      },
+      "new-plymouth-power": {
+        "site_id": "NPL_POWER",
+        "display_name": "New Plymouth Power Station",
+        "lat": -39.0556,
+        "lon": 174.0752,
+        "customers": ["GENESIS_ENERGY", "CONTACT_ENERGY"],
+        "message_frequency": 1.4
+      }
+    }

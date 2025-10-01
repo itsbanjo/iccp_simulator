@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iccp-simulator
+spec:
+  template:
+    spec:
+      containers:
+      - name: simulator
+        image: banjodocker/iccp-simulator:latest
