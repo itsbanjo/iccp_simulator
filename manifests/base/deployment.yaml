@@ -1,23 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iccp-simulator-auckland-penrose
-  namespace: transpower-demo
+  name: iccp-simulator
   labels:
     app: iccp-simulator
-    site: auckland-penrose
     component: transpower-iccp
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: iccp-simulator
-      site: auckland-penrose
   template:
     metadata:
       labels:
         app: iccp-simulator
-        site: auckland-penrose
         component: transpower-iccp
     spec:
       containers:
@@ -27,21 +23,7 @@ spec:
         - name: KAFKA_BROKERS
           value: "transpower-kafka-kafka-bootstrap:9092"
         - name: SITE_NAME
-          value: "auckland-penrose"
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: ELASTIC_APM_SERVICE_NAME
-          value: "iccp-simulator-auckland-penrose"
+          value: "CHANGEME"
         - name: ELASTIC_APM_SERVER_URL
           value: "https://apmserver-sample-apm-http.elastic-observability.svc.cluster.local:8200"
         - name: ELASTIC_APM_SECRET_TOKEN
@@ -55,6 +37,12 @@ spec:
           value: "1.0"
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
           value: "false"
+        - name: ELASTIC_APM_SERVICE_NAME
+          value: "CHANGEME"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         volumeMounts:
         - name: sites-config
           mountPath: /app/config
@@ -71,29 +59,12 @@ spec:
             command: ["python", "health_check.py"]
           initialDelaySeconds: 10
           periodSeconds: 5
-          timeoutSeconds: 5
         livenessProbe:
           exec:
             command: ["python", "health_check.py"]
           initialDelaySeconds: 30
           periodSeconds: 10
-          timeoutSeconds: 5
       volumes:
       - name: sites-config
         configMap:
           name: iccp-sites-config
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-role.kubernetes.io/worker
-                operator: Exists
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app: iccp-simulator
-              topologyKey: kubernetes.io/hostname
