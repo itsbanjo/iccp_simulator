@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: transpower-demo
+
+nameSuffix: -auckland-penrose
+
+resources:
+  - ../../base
+
+labels:
+  - pairs:
+      site: auckland-penrose
+
+patches:
+  - target:
+      kind: Deployment
+      name: iccp-simulator
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: "auckland-penrose"
+      - op: replace
+        path: /spec/template/spec/containers/0/env/7/value
+        value: "iccp-simulator-auckland-penrose"
