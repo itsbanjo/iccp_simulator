@@ -49,8 +49,16 @@ jobs:
 
       - name: Update manifest
         run: |
-          sed -i "s|image:.*|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|" manifests/overlays/production/patches.yaml
+          sed -i "s|image: banjodocker/iccp-simulator:.*|image: banjodocker/iccp-simulator:main-${{ github.sha }}|" manifests/base/deployment.yaml
           
+      - name: Commit manifest changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add manifests/base/deployment.yaml
+          git commit -m "Update image to main-${{ github.sha }}" || exit 0
+          git push
+
       - name: Commit manifest changes
         run: |
           git config user.name "GitHub Actions"
