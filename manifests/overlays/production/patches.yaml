@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iccp-simulator
+  name: iccp-simulator-auckland-penrose
 spec:
   template:
     spec:
