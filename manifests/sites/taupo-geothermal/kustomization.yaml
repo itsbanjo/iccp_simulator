@@ -3,12 +3,14 @@ kind: Kustomization
 
 namespace: customer-demo
 
+nameSuffix: -taupo-geothermal
+
 resources:
   - ../../base
 
 labels:
   - pairs:
-      site: new-plymouth-power
+      site: taupo-geothermal
 
 patches:
   - target:
@@ -17,22 +19,22 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: iccp-simulator-new-plymouth-power
+        name: iccp-simulator-taupo-geothermal
         labels:
-          site: new-plymouth-power
+          site: taupo-geothermal
       spec:
         selector:
           matchLabels:
-            site: new-plymouth-power
+            site: taupo-geothermal
         template:
           metadata:
             labels:
-              site: new-plymouth-power
+              site: taupo-geothermal
           spec:
             containers:
             - name: iccp-simulator
               env:
               - name: SITE_NAME
-                value: "new-plymouth-power"
+                value: "taupo-geothermal"
               - name: ELASTIC_APM_SERVICE_NAME
-                value: "iccp-simulator-new-plymouth-power"
+                value: "taupo-geothermal"
