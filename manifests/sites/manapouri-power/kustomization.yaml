@@ -3,14 +3,14 @@ kind: Kustomization
 
 namespace: customer-demo
 
-nameSuffix: -new-plymouth-power
+nameSuffix: -manapouri-power
 
 resources:
   - ../../base
 
 labels:
   - pairs:
-      site: new-plymouth-power
+      site: manapouri-power
 
 patches:
   - target:
@@ -19,22 +19,22 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: iccp-simulator-new-plymouth-power
+        name: iccp-simulator-manapouri-power
         labels:
-          site: new-plymouth-power
+          site: manapouri-power
       spec:
         selector:
           matchLabels:
-            site: new-plymouth-power
+            site: manapouri-power
         template:
           metadata:
             labels:
-              site: new-plymouth-power
+              site: manapouri-power
           spec:
             containers:
             - name: iccp-simulator
               env:
               - name: SITE_NAME
-                value: "new-plymouth-power"
+                value: "manapouri-power"
               - name: ELASTIC_APM_SERVICE_NAME
-                value: "iccp-simulator-new-plymouth-power"
+                value: "iccp-simulator-manapouri-power"
