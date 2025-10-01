@@ -3,8 +3,6 @@ kind: Kustomization
 
 namespace: customer-demo
 
-nameSuffix: -wellington-central
-
 resources:
   - ../../base
 
@@ -17,6 +15,9 @@ patches:
       kind: Deployment
       name: iccp-simulator
     patch: |-
+      - op: replace
+        path: /metadata/name
+        value: "iccp-simulator-wellington-central"
       - op: replace
         path: /spec/template/spec/containers/0/env/1/value
         value: "wellington-central"
