@@ -15,21 +15,25 @@ patches:
       kind: Deployment
       name: iccp-simulator
     patch: |-
-      - op: replace
-        path: /metadata/name
-        value: "iccp-simulator-wellington-central"
-      - op: replace
-        path: /spec/template/spec/containers/0/env/1/value
-        value: "wellington-central"
-      - op: replace
-        path: /spec/template/spec/containers/0/env/5/value
-        value: "iccp-simulator-wellington-central"
-      - op: add
-        path: /spec/template/metadata/labels/site
-        value: "wellington-central"
-      - op: add
-        path: /spec/selector/matchLabels/site
-        value: "wellington-central"
-      - op: add
-        path: /metadata/labels/site
-        value: "wellington-central"
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: iccp-simulator-wellington-central
+        labels:
+          site: wellington-central
+      spec:
+        selector:
+          matchLabels:
+            site: wellington-central
+        template:
+          metadata:
+            labels:
+              site: wellington-central
+          spec:
+            containers:
+            - name: iccp-simulator
+              env:
+              - name: SITE_NAME
+                value: "wellington-central"
+              - name: ELASTIC_APM_SERVICE_NAME
+                value: "iccp-simulator-wellington-central"
