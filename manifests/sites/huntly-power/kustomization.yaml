@@ -8,7 +8,7 @@ resources:
 
 labels:
   - pairs:
-      site: auckland-penrose
+      site: huntly-power
 
 patches:
   - target:
@@ -18,22 +18,22 @@ patches:
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: iccp-simulator-auckland-penrose
+        name: iccp-simulator-huntly-power
         labels:
-          site: auckland-penrose
+          site: huntly-power
       spec:
         selector:
           matchLabels:
-            site: auckland-penrose
+            site: huntly-power
         template:
           metadata:
             labels:
-              site: auckland-penrose
+              site: huntly-power
           spec:
             containers:
             - name: iccp-simulator
               env:
               - name: SITE_NAME
-                value: "auckland-penrose"
+                value: "huntly-power"
               - name: ELASTIC_APM_SERVICE_NAME
-                value: "iccp-simulator-auckland-penrose"
+                value: "iccp-simulator-huntly-power"
