@@ -3,6 +3,8 @@ kind: Kustomization
 
 namespace: customer-demo
 
+nameSuffix: -christchurch-addington
+
 resources:
   - ../../base
 
