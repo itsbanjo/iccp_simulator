@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: iccp-huntly-power
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/itsbanjo/iccp_simulator.git
+    targetRevision: main
+    path: manifests/sites/huntly-power
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: customer-demo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
