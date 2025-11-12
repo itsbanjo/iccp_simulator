@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: iccp-simulator
-        image: banjodocker/iccp-simulator:latest
+        image: banjodocker/iccp-simulator:1.0.1
         env:
         - name: KAFKA_BROKERS
           value: "transpower-kafka-kafka-bootstrap:9092"
