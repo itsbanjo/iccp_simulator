@@ -25,7 +25,7 @@ spec:
         - name: SITE_NAME
           value: "CHANGEME"
         - name: ELASTIC_APM_SERVER_URL
-          value: "https://apmserver-sample-apm-http.elastic-observability.svc.cluster.local:8200"
+          value: "https://my-observability-project-f6c956.apm.australiaeast.azure.elastic.cloud:443"
         - name: ELASTIC_APM_SECRET_TOKEN
           valueFrom:
             secretKeyRef:
