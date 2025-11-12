@@ -5,7 +5,7 @@
 The ICCP simulator now sends logs to Elasticsearch with automatic correlation to APM traces. Every log line includes trace IDs so you can jump from a trace in APM straight to the logs and back.
 
 ## Version History
-
+- **v2.5.0** (Nov 13, 2025): We changed from ECK to Serverless APM 
 - **v2.4.0** (Oct 1, 2025): Added APM log correlation, ECS formatting, performance tracking
 - **v2.3.1** (Oct 1, 2025): Fixed traceparent propagation for distributed tracing
 - **v2.3.0**: Initial APM integration
