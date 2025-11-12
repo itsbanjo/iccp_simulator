@@ -29,7 +29,7 @@ import elasticapm
 # Initialize the APM Client (documented API)
 apm_client = Client({
     'SERVICE_NAME': os.environ.get('ELASTIC_APM_SERVICE_NAME', 'iccp-simulator'),
-    'SECRET_TOKEN': os.environ.get('ELASTIC_APM_SECRET_TOKEN'),
+    'API_KEY': os.environ.get('ELASTIC_APM_SECRET_TOKEN'),
     'SERVER_URL': os.environ.get('ELASTIC_APM_SERVER_URL'),
     'ENVIRONMENT': os.environ.get('ELASTIC_APM_ENVIRONMENT', 'production'),
     'SERVICE_VERSION': '2.3.2',
